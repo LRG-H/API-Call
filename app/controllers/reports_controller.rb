@@ -7,11 +7,8 @@ class ReportsController < ApplicationController
     if Rails.env.development?
       Entry.delete_all
       Lock.delete_all
-
-
     end
     report = params[:report].open
-
     csv_options = { col_sep: ',', headers: :first_row }
 
     CSV.parse(report, csv_options) do |timestamp, lock_id, kind, status_change|
